@@ -1,3 +1,21 @@
 <?php
-    session_start
+    session_start();
+
+    $host = 'localhost';
+    $dbname = 'user_auth_system_php';
+    $username = 'root';
+    $password = '';
+
+    try {
+        // Create a PDO connection
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        // Set PDO to throw exceptions on error
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Set character encoding to UTF-8
+        $pdo->exec("SET NAMES 'utf8'");
+    } catch (PDOException $e) {
+        // Display error message and stop execution if connection fails
+        die("Connection failed: " . $e->getMessage());
+    }
+
 ?>
