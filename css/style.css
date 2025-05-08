@@ -39,3 +39,10 @@ body {
     padding: 0 20px;
     flex: 1;
 }
+
+.card {
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
