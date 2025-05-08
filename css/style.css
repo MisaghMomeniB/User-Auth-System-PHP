@@ -32,3 +32,10 @@ body {
     border-radius: 15px;
     transition: all 0.3s ease;
 }
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    flex: 1;
+}
