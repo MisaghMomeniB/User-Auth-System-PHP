@@ -1,35 +1,10 @@
-body {
-    background-color: #f8f9fa;
-}
-
-.container {
-    max-width: 500px;
-    margin-top: 50px;
-}
-
-.card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-header {
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    border-radius: 10px 10px 0 0;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border: none;
-    transition: background-color 0.3s;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.alert {
-    margin-bottom: 20px;
+:root {
+    --primary-color: #FFC107;
+    --primary-dark: #FFA000;
+    --primary-light: #FFECB3;
+    --secondary-color: #5D4037;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --text-dark: #333;
+    --text-light: #fff;
 }
