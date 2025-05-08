@@ -51,3 +51,12 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(255, 152, 0, 0.3);
 }
+
+.card-header {
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
+    color: var(--text-light);
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
