@@ -89,3 +89,10 @@ body {
     background-color: var(--glass-bg);
     text-align: center;
 }
+
+.card-body p {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
