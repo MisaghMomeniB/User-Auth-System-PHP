@@ -83,3 +83,9 @@ body {
     transform: rotate(30deg);
     pointer-events: none;
 }
+
+.card-body {
+    padding: 2rem;
+    background-color: var(--glass-bg);
+    text-align: center;
+}
