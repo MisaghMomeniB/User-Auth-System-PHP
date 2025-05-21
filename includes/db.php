@@ -3,10 +3,10 @@
 session_start();
 
 // Database configuration
-$host = 'localhost';
-$dbname = 'user_auth';
-$username = 'root'; // Change to your MySQL username
-$password = '';     // Change to your MySQL password
+// $host = 'localhost';
+// $dbname = 'user_auth';
+// $username = 'root'; // Change to your MySQL username
+// $password = '';     // Change to your MySQL password
 
 try {
     // Create a PDO connection
