@@ -1,167 +1,144 @@
-# User Authentication System 🛡️🔐
+# 🛡️ User Auth System (PHP)
 
-A modern, secure, and responsive **User Authentication System** built with **PHP**, **MySQL**, and **Bootstrap**. This project provides user registration, login, session management, and a clean dashboard, with a focus on security and user experience. 🚀
-
----
-
-## Table of Contents 📑
-- [Features](#features-✨)
-- [Technologies](#technologies-🛠️)
-- [Project Structure](#project-structure-📂)
-- [Setup Instructions](#setup-instructions-⚙️)
-- [Usage](#usage-📖)
-- [Security](#security-🔒)
-- [Screenshots](#screenshots-📸)
-- [Future Improvements](#future-improvements-🌟)
-- [Contributing](#contributing-🤝)
-- [License](#license-📜)
+A secure, modular **User Authentication System** built in PHP. Ideal for learning, extending, or integrating basic auth flows into your applications.
 
 ---
 
-## Features ✨
-- **User Registration** 📝: Create an account with username, email, and password.
-- **User Login** 🔑: Securely log in with username and password.
-- **Session Management** 🔗: Maintain user sessions with PHP sessions.
-- **Dashboard** 🖥️: Personalized dashboard for logged-in users.
-- **Responsive Design** 📱: Built with Bootstrap for a mobile-friendly UI.
-- **Secure Password Storage** 🔐: Passwords are hashed using `password_hash()`.
-- **Input Validation** ✅: Client- and server-side validation for all inputs.
-- **Error Handling** ⚠️: User-friendly error and success messages.
-- **Logout Functionality** 🚪: Safely log out and destroy sessions.
+## 📋 Table of Contents
+
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Tech Stack](#tech-stack)
+4. [Architecture & Folder Structure](#architecture--folder-structure)
+5. [Installation & Setup](#installation--setup)
+6. [Usage](#usage)
+7. [Security Notes](#security-notes)
+8. [Contributing](#contributing)
+9. [License](#license)
 
 ---
 
-## Technologies 🛠️
-- **PHP 7.4+** 🐘: Backend logic and session management.
-- **MySQL** 🗄️: Database for storing user data.
-- **Bootstrap 5** 🎨: Responsive and modern front-end styling.
-- **HTML5/CSS3** 🌐: Structure and custom styles.
-- **PDO** 🔗: Secure database connections with prepared statements.
+## 💡 Overview
+
+This project demonstrates a clean **PHP‑based authentication flow** with session management. Great for anyone learning PHP OOP or building foundational auth features before adopting full-stack frameworks. It's a work‑in‑progress that’s evolving with deeper OOP practices, PSR‑compliance, and enhanced security practices.
 
 ---
 
-## Project Structure 📂
+## ✅ Features
+
+* User **Registration**, **Login**, and **Logout**
+* Persistent **session management** (via `$_SESSION`)
+* **Password hashing** using PHP’s `password_hash()` and `password_verify()`
+* **Input validation** & graceful error / field validation handling
+* Structured for **OOP refactoring**, extensibility & reuse
+
+---
+
+## 🧠 Tech Stack
+
+* **PHP** (native, no framework)
+* **MySQL** (or compatible RDBMS via PDO)
+* Composer-ready structure (autoload ready)
+* Optional front-end enhancements (e.g., Bootstrap, client-side validation)
+
+---
+
+## 🗂️ Architecture & Folder Structure
+
 ```
-user-auth-system/
-├── css/                    # Custom styles
-│   └── style.css
-├── includes/               # Reusable PHP files
-│   ├── db.php             # Database connection
-│   ├── header.php         # Navbar and HTML head
-│   └── footer.php         # HTML footer and scripts
-├── register.php            # Registration page
-├── login.php               # Login page
-├── dashboard.php           # User dashboard
-├── logout.php              # Logout script
-└── index.php               # Home page
+/ (root)
+├── src/                 # Core PHP classes (e.g. User, Auth, DB)
+├── public/              # Entry points: index.php, login.php, register.php, logout.php
+├── config/              # database.php, config.php for environment vars
+├── templates/           # Shared header/footer or email templates
+├── assets/              # JS / CSS / images
+├── vendor/              # Composer dependencies (optional)
+└── README.md
 ```
+
+* Classes live under `src/`, following PSR‑4 standards.
+* Public MVC-like controllers (`public/*.php`) handle form data, instantiate Auth logic, and render templates.
+* `config/` centralizes DB and session settings.
 
 ---
 
-## Setup Instructions ⚙️
+## ⚙️ Installation & Setup
 
-### Prerequisites
-- **Web Server** (e.g., Apache via XAMPP) 🖥️
-- **PHP 7.4+** 🐘
-- **MySQL** 🗄️
-- **Browser** (e.g., Chrome, Firefox) 🌐
+### Requirements
+
+* PHP 7.4+ with PDO (MySQL or MariaDB)
+* MySQL 5.7+
+* Composer (optional, if using autoloading)
 
 ### Steps
-1. **Clone the Repository** 📥
+
+1. **Clone the repo**
+
    ```bash
-   git clone https://github.com/your-username/user-auth-system.git
+   git clone https://github.com/MisaghMomeniB/User-Auth-System-PHP.git
    ```
+2. **Import DB schema** (`schema.sql`) into your database.
+3. **Configure DB connection** (`config/config.php`):
 
-2. **Set Up the Database** 🗄️
-   - Create a MySQL database named `user_auth`.
-   - Run the following SQL to create the `users` table:
-     ```sql
-     CREATE DATABASE user_auth;
-     USE user_auth;
+   ```php
+   define('DB_HOST', 'localhost');
+   define('DB_NAME', 'your_db');
+   define('DB_USER', 'db_user');
+   define('DB_PASS', 'secret');
+   ```
+4. **(Optional)** Install dependencies & autoload:
 
-     CREATE TABLE users (
-         id INT AUTO_INCREMENT PRIMARY KEY,
-         username VARCHAR(50) NOT NULL UNIQUE,
-         email VARCHAR(100) NOT NULL UNIQUE,
-         password VARCHAR(255) NOT NULL,
-         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-     );
+   ```bash
+   composer install
+   ```
+5. **Serve the project**:
+
+   * For built-in PHP server:
+
+     ```bash
+     php -S localhost:8000 -t public/
      ```
-
-3. **Configure Database Connection** 🔗
-   - Open `includes/db.php`.
-   - Update the database credentials:
-     ```php
-     $host = 'localhost';
-     $dbname = 'user_auth';
-     $username = 'your_mysql_username'; // e.g., 'root'
-     $password = 'your_mysql_password'; // e.g., ''
-     ```
-
-4. **Host the Project** 🌐
-   - Move the project folder to your web server's root (e.g., `htdocs` for XAMPP).
-   - Start your web server and MySQL.
-
-5. **Access the Application** 🚀
-   - Open `http://localhost/user-auth-system/` in your browser.
+   * Or configure with Apache/Nginx.
 
 ---
 
-## Usage 📖
-1. **Home Page** 🏠
-   - Visit the home page (`index.php`) to see links for login or registration.
-2. **Register** 📝
-   - Go to `register.php`, enter a username, email, and password, and submit.
-   - Passwords must be at least 6 characters, and usernames/emails must be unique.
-3. **Login** 🔑
-   - Go to `login.php`, enter your username and password, and log in.
-   - On success, you'll be redirected to the dashboard.
-4. **Dashboard** 🖥️
-   - View your personalized dashboard (`dashboard.php`) with a welcome message.
-5. **Logout** 🚪
-   - Click "Logout" to end your session and return to the login page.
+## 🚀 Usage
+
+* **Register**: Open `/register.php`, fill the form to create an account
+* **Login**: Via `/login.php`, then access protected areas
+* **Logout**: Via `/logout.php`, cleans session & redirects
+* **Session Check**: Ensure protection using middleware pattern in your secured pages
 
 ---
 
-## Security 🔒
-- **Password Hashing** 🔐: Passwords are securely hashed using `password_hash()`.
-- **SQL Injection Prevention** 🛡️: Uses PDO prepared statements.
-- **XSS Protection** 🚫: User inputs are escaped with `htmlspecialchars()`.
-- **Session Security** 🔗: Sessions are managed with `session_start()` and `session_destroy()`.
+## 🔒 Security Notes
+
+* Uses `password_hash()` / `password_verify()` for password safety
+* Uses **prepared statements** via PDO to prevent SQL injection
+* Session‑based authentication with regeneration of session IDs after login
+* Next steps: CSRF tokens, login throttling, email verification, 2FA — upcoming in this repo!
 
 ---
 
-## Screenshots 📸
-*(Add screenshots here if hosting on GitHub. For now, placeholders.)*
-- **Registration Page** 📝: Clean form with validation.
-- **Login Page** 🔑: Simple and secure login interface.
-- **Dashboard** 🖥️: Personalized user dashboard.
+## 🤝 Contributing
+
+Contributions welcome!
+
+1. Fork the repo
+2. Create a feature branch (`feature/…`)
+3. Commit your changes with clear messages
+4. Open a **Pull Request** and describe your changes
 
 ---
 
-## Future Improvements 🌟
-- **Password Recovery** 📧: Add email-based password reset.
-- **CAPTCHA** 🤖: Prevent automated registrations.
-- **User Profiles** 👤: Allow users to edit their profiles.
-- **Two-Factor Authentication** 🔐: Enhance security with 2FA.
-- **Dark Mode** 🌙: Add a toggle for dark theme.
+## 📝 License
+
+This project is licensed under the **MIT License**. Feel free to use, modify, and distribute it.
 
 ---
 
-## Contributing 🤝
-Contributions are welcome! 🙌 To contribute:
-1. Fork the repository 🍴.
-2. Create a new branch (`git checkout -b feature/your-feature`) 🌿.
-3. Commit your changes (`git commit -m "Add your feature"`) 💾.
-4. Push to the branch (`git push origin feature/your-feature`) 🚀.
-5. Open a Pull Request 📬.
+**Let me know if you'd like**:
 
----
-
-## License 📜
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
----
-
-💡 **Built with ❤️ by Misagh**  
-📬 Feel free to open an issue or contact me for questions!  
+* Example `.env` / config templates
+* Basic CSRF / 2FA implementation
+* Commented code blocks or diagrams
